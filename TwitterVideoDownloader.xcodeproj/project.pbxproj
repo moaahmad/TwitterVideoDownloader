@@ -1,0 +1,599 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F08364CD23C4EA0A009C74A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08364CC23C4EA0A009C74A1 /* AppDelegate.swift */; };
+		F08364CF23C4EA0A009C74A1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08364CE23C4EA0A009C74A1 /* SceneDelegate.swift */; };
+		F08364D423C4EA0A009C74A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F08364D223C4EA0A009C74A1 /* Main.storyboard */; };
+		F08364D623C4EA14009C74A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F08364D523C4EA14009C74A1 /* Assets.xcassets */; };
+		F08364D923C4EA14009C74A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F08364D723C4EA14009C74A1 /* LaunchScreen.storyboard */; };
+		F08364E423C4EA14009C74A1 /* TwitterVideoDownloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08364E323C4EA14009C74A1 /* TwitterVideoDownloaderTests.swift */; };
+		F08364EF23C4EA15009C74A1 /* TwitterVideoDownloaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08364EE23C4EA15009C74A1 /* TwitterVideoDownloaderUITests.swift */; };
+		F08364FD23C4F62F009C74A1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08364FC23C4F62F009C74A1 /* MainViewController.swift */; };
+		F08364FF23C4F63B009C74A1 /* DownloadedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08364FE23C4F63B009C74A1 /* DownloadedViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F08364E023C4EA14009C74A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F08364C123C4EA0A009C74A1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F08364C823C4EA0A009C74A1;
+			remoteInfo = TwitterVideoDownloader;
+		};
+		F08364EB23C4EA15009C74A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F08364C123C4EA0A009C74A1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F08364C823C4EA0A009C74A1;
+			remoteInfo = TwitterVideoDownloader;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F08364C923C4EA0A009C74A1 /* TwitterVideoDownloader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterVideoDownloader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F08364CC23C4EA0A009C74A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F08364CE23C4EA0A009C74A1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		F08364D323C4EA0A009C74A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F08364D523C4EA14009C74A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F08364D823C4EA14009C74A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F08364DA23C4EA14009C74A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F08364DF23C4EA14009C74A1 /* TwitterVideoDownloaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwitterVideoDownloaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F08364E323C4EA14009C74A1 /* TwitterVideoDownloaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterVideoDownloaderTests.swift; sourceTree = "<group>"; };
+		F08364E523C4EA14009C74A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F08364EA23C4EA15009C74A1 /* TwitterVideoDownloaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwitterVideoDownloaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F08364EE23C4EA15009C74A1 /* TwitterVideoDownloaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterVideoDownloaderUITests.swift; sourceTree = "<group>"; };
+		F08364F023C4EA15009C74A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F08364FC23C4F62F009C74A1 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		F08364FE23C4F63B009C74A1 /* DownloadedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F08364C623C4EA0A009C74A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F08364DC23C4EA14009C74A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F08364E723C4EA15009C74A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F08364C023C4EA0A009C74A1 = {
+			isa = PBXGroup;
+			children = (
+				F08364CB23C4EA0A009C74A1 /* TwitterVideoDownloader */,
+				F08364E223C4EA14009C74A1 /* TwitterVideoDownloaderTests */,
+				F08364ED23C4EA15009C74A1 /* TwitterVideoDownloaderUITests */,
+				F08364CA23C4EA0A009C74A1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F08364CA23C4EA0A009C74A1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F08364C923C4EA0A009C74A1 /* TwitterVideoDownloader.app */,
+				F08364DF23C4EA14009C74A1 /* TwitterVideoDownloaderTests.xctest */,
+				F08364EA23C4EA15009C74A1 /* TwitterVideoDownloaderUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F08364CB23C4EA0A009C74A1 /* TwitterVideoDownloader */ = {
+			isa = PBXGroup;
+			children = (
+				F08364CC23C4EA0A009C74A1 /* AppDelegate.swift */,
+				F08364CE23C4EA0A009C74A1 /* SceneDelegate.swift */,
+				F08364FC23C4F62F009C74A1 /* MainViewController.swift */,
+				F08364FE23C4F63B009C74A1 /* DownloadedViewController.swift */,
+				F08364D223C4EA0A009C74A1 /* Main.storyboard */,
+				F08364D523C4EA14009C74A1 /* Assets.xcassets */,
+				F08364D723C4EA14009C74A1 /* LaunchScreen.storyboard */,
+				F08364DA23C4EA14009C74A1 /* Info.plist */,
+			);
+			path = TwitterVideoDownloader;
+			sourceTree = "<group>";
+		};
+		F08364E223C4EA14009C74A1 /* TwitterVideoDownloaderTests */ = {
+			isa = PBXGroup;
+			children = (
+				F08364E323C4EA14009C74A1 /* TwitterVideoDownloaderTests.swift */,
+				F08364E523C4EA14009C74A1 /* Info.plist */,
+			);
+			path = TwitterVideoDownloaderTests;
+			sourceTree = "<group>";
+		};
+		F08364ED23C4EA15009C74A1 /* TwitterVideoDownloaderUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F08364EE23C4EA15009C74A1 /* TwitterVideoDownloaderUITests.swift */,
+				F08364F023C4EA15009C74A1 /* Info.plist */,
+			);
+			path = TwitterVideoDownloaderUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F08364C823C4EA0A009C74A1 /* TwitterVideoDownloader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F08364F323C4EA15009C74A1 /* Build configuration list for PBXNativeTarget "TwitterVideoDownloader" */;
+			buildPhases = (
+				F08364C523C4EA0A009C74A1 /* Sources */,
+				F08364C623C4EA0A009C74A1 /* Frameworks */,
+				F08364C723C4EA0A009C74A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TwitterVideoDownloader;
+			productName = TwitterVideoDownloader;
+			productReference = F08364C923C4EA0A009C74A1 /* TwitterVideoDownloader.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F08364DE23C4EA14009C74A1 /* TwitterVideoDownloaderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F08364F623C4EA15009C74A1 /* Build configuration list for PBXNativeTarget "TwitterVideoDownloaderTests" */;
+			buildPhases = (
+				F08364DB23C4EA14009C74A1 /* Sources */,
+				F08364DC23C4EA14009C74A1 /* Frameworks */,
+				F08364DD23C4EA14009C74A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F08364E123C4EA14009C74A1 /* PBXTargetDependency */,
+			);
+			name = TwitterVideoDownloaderTests;
+			productName = TwitterVideoDownloaderTests;
+			productReference = F08364DF23C4EA14009C74A1 /* TwitterVideoDownloaderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F08364E923C4EA15009C74A1 /* TwitterVideoDownloaderUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F08364F923C4EA15009C74A1 /* Build configuration list for PBXNativeTarget "TwitterVideoDownloaderUITests" */;
+			buildPhases = (
+				F08364E623C4EA15009C74A1 /* Sources */,
+				F08364E723C4EA15009C74A1 /* Frameworks */,
+				F08364E823C4EA15009C74A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F08364EC23C4EA15009C74A1 /* PBXTargetDependency */,
+			);
+			name = TwitterVideoDownloaderUITests;
+			productName = TwitterVideoDownloaderUITests;
+			productReference = F08364EA23C4EA15009C74A1 /* TwitterVideoDownloaderUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F08364C123C4EA0A009C74A1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = "Ahmad, Mohammed (UK - London)";
+				TargetAttributes = {
+					F08364C823C4EA0A009C74A1 = {
+						CreatedOnToolsVersion = 11.3;
+					};
+					F08364DE23C4EA14009C74A1 = {
+						CreatedOnToolsVersion = 11.3;
+						TestTargetID = F08364C823C4EA0A009C74A1;
+					};
+					F08364E923C4EA15009C74A1 = {
+						CreatedOnToolsVersion = 11.3;
+						TestTargetID = F08364C823C4EA0A009C74A1;
+					};
+				};
+			};
+			buildConfigurationList = F08364C423C4EA0A009C74A1 /* Build configuration list for PBXProject "TwitterVideoDownloader" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F08364C023C4EA0A009C74A1;
+			productRefGroup = F08364CA23C4EA0A009C74A1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F08364C823C4EA0A009C74A1 /* TwitterVideoDownloader */,
+				F08364DE23C4EA14009C74A1 /* TwitterVideoDownloaderTests */,
+				F08364E923C4EA15009C74A1 /* TwitterVideoDownloaderUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F08364C723C4EA0A009C74A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F08364D923C4EA14009C74A1 /* LaunchScreen.storyboard in Resources */,
+				F08364D623C4EA14009C74A1 /* Assets.xcassets in Resources */,
+				F08364D423C4EA0A009C74A1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F08364DD23C4EA14009C74A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F08364E823C4EA15009C74A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F08364C523C4EA0A009C74A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F08364CD23C4EA0A009C74A1 /* AppDelegate.swift in Sources */,
+				F08364FF23C4F63B009C74A1 /* DownloadedViewController.swift in Sources */,
+				F08364CF23C4EA0A009C74A1 /* SceneDelegate.swift in Sources */,
+				F08364FD23C4F62F009C74A1 /* MainViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F08364DB23C4EA14009C74A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F08364E423C4EA14009C74A1 /* TwitterVideoDownloaderTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F08364E623C4EA15009C74A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F08364EF23C4EA15009C74A1 /* TwitterVideoDownloaderUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F08364E123C4EA14009C74A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F08364C823C4EA0A009C74A1 /* TwitterVideoDownloader */;
+			targetProxy = F08364E023C4EA14009C74A1 /* PBXContainerItemProxy */;
+		};
+		F08364EC23C4EA15009C74A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F08364C823C4EA0A009C74A1 /* TwitterVideoDownloader */;
+			targetProxy = F08364EB23C4EA15009C74A1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F08364D223C4EA0A009C74A1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F08364D323C4EA0A009C74A1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F08364D723C4EA14009C74A1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F08364D823C4EA14009C74A1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F08364F123C4EA15009C74A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F08364F223C4EA15009C74A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F08364F423C4EA15009C74A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LJUBWA56NT;
+				INFOPLIST_FILE = TwitterVideoDownloader/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.projects.TwitterVideoDownloader;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F08364F523C4EA15009C74A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LJUBWA56NT;
+				INFOPLIST_FILE = TwitterVideoDownloader/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.projects.TwitterVideoDownloader;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F08364F723C4EA15009C74A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LJUBWA56NT;
+				INFOPLIST_FILE = TwitterVideoDownloaderTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.projects.TwitterVideoDownloaderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TwitterVideoDownloader.app/TwitterVideoDownloader";
+			};
+			name = Debug;
+		};
+		F08364F823C4EA15009C74A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LJUBWA56NT;
+				INFOPLIST_FILE = TwitterVideoDownloaderTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.projects.TwitterVideoDownloaderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TwitterVideoDownloader.app/TwitterVideoDownloader";
+			};
+			name = Release;
+		};
+		F08364FA23C4EA15009C74A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LJUBWA56NT;
+				INFOPLIST_FILE = TwitterVideoDownloaderUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.projects.TwitterVideoDownloaderUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TwitterVideoDownloader;
+			};
+			name = Debug;
+		};
+		F08364FB23C4EA15009C74A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LJUBWA56NT;
+				INFOPLIST_FILE = TwitterVideoDownloaderUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.projects.TwitterVideoDownloaderUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TwitterVideoDownloader;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F08364C423C4EA0A009C74A1 /* Build configuration list for PBXProject "TwitterVideoDownloader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F08364F123C4EA15009C74A1 /* Debug */,
+				F08364F223C4EA15009C74A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F08364F323C4EA15009C74A1 /* Build configuration list for PBXNativeTarget "TwitterVideoDownloader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F08364F423C4EA15009C74A1 /* Debug */,
+				F08364F523C4EA15009C74A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F08364F623C4EA15009C74A1 /* Build configuration list for PBXNativeTarget "TwitterVideoDownloaderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F08364F723C4EA15009C74A1 /* Debug */,
+				F08364F823C4EA15009C74A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F08364F923C4EA15009C74A1 /* Build configuration list for PBXNativeTarget "TwitterVideoDownloaderUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F08364FA23C4EA15009C74A1 /* Debug */,
+				F08364FB23C4EA15009C74A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F08364C123C4EA0A009C74A1 /* Project object */;
+}
