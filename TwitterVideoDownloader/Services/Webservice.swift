@@ -7,26 +7,35 @@
 //
 
 import Foundation
+import TwitterKit
 
 class Webservice {
-   
-  func getTweet(url: URL, completion: @escaping (Tweet?) -> ()) {
-     
-    URLSession.shared.dataTask(with: url) { (data, response, error) in
-       
-      if let error = error {
-         
-        print(error.localizedDescription)
-        completion(nil)
-         
-      } else if let data = data {
-         
-        let tweet = try? JSONDecoder().decode(Tweet.self, from: data)
-         
-        if let tweet = tweet {
-          completion(tweet)
+    
+    let client = TWTRAPIClient()
+    let baseUrl = "https://api.twitter.com/1.1/statuses/show.json"
+    var clientError : NSError?
+    
+    func getTweet(params: [String: String], completion: @escaping (Tweet?) -> ()) {
+        
+        let request = client.urlRequest(withMethod: "GET", urlString: baseUrl, parameters: params, error: &clientError)
+        
+        client.sendTwitterRequest(request) { (response, data, connectionError) -> Void in
+            if connectionError != nil {
+                print("Error: \(String(describing: connectionError))")
+            }
+            
+            if let data = data {
+                
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                
+                if let tweet = try? decoder.decode(Tweet.self, from: data) {
+                    completion(tweet)
+                } else {
+                    fatalError("Error: There was a problem decoding json")
+                }
+            }
         }
-      }
-    }.resume()
-  }
+    }
 }
+

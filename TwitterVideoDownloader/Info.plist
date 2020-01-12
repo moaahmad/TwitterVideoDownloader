@@ -72,5 +72,13 @@
         <string>twitter</string>
         <string>twitterauth</string>
     </array>
+    
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>saves</string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+    </dict>
 </dict>
 </plist>
