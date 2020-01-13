@@ -10,42 +10,50 @@ import UIKit
 import Photos
 
 class TweetMediaTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var mediaTypeLabel: UILabel!
     @IBOutlet weak var bitrateLabel: UILabel!
-    @IBOutlet weak var previewButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
     
+    let generator = UINotificationFeedbackGenerator()
     var tweetVM: TweetViewModel!
     var indexPathRow: Int!
     var videoUrl: String!
+    var hasDownloaded = false
     
     @IBAction func didTapSaveButton(_ sender: Any) {
         print("Save button was tapped")
-        downloadVideo(at: indexPathRow, with: videoUrl)
+        downloadVideo(at: indexPathRow, with: videoUrl) {
+            self.hasDownloaded = true
+        }
     }
     
-    private func downloadVideo(at index: Int, with videoUrl: String) {
-        
+    private func downloadVideo(at index: Int, with videoUrl: String, completion: @escaping () -> ()) {
         DispatchQueue.global(qos: .background).async {
-            if let url = URL(string: videoUrl), let urlData = NSData(contentsOf: url) {
-             let galleryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[index];
-             let filePath="\(galleryPath)/tempFile.mp4"
             
-            DispatchQueue.main.async {
-                urlData.write(toFile: filePath, atomically: true)
-                   PHPhotoLibrary.shared().performChanges({
-                   PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL:
-                   URL(fileURLWithPath: filePath))
-                }) {
-                   success, error in
-                   if success {
-                      print("Succesfully Saved")
-                   } else {
-                      print(error?.localizedDescription)
-                   }
+            if let url = URL(string: videoUrl), let urlData = NSData(contentsOf: url) {
+                let galleryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,
+                                                                      .userDomainMask,
+                                                                      true)[index];
+                let filePath="\(galleryPath)/tempFile.mp4"
+                
+                DispatchQueue.main.async {
+                    urlData.write(toFile: filePath, atomically: true)
+                    PHPhotoLibrary.shared().performChanges({
+                        PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL:
+                            URL(fileURLWithPath: filePath))
+                    }) { success, error in
+                        if success {
+                            print("Succesfully Saved")
+                            self.generator.notificationOccurred(.success)
+                            self.hasDownloaded = true
+                        } else {
+                            print(error?.localizedDescription)
+                            self.generator.notificationOccurred(.error)
+                        }
+                    }
                 }
-             }
-          }
-       }
+            }
+        }
     }
 }
