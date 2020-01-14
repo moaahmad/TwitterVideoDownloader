@@ -48,11 +48,10 @@ class TweetDetailViewController: UIViewController {
     }
     @IBOutlet weak var tableView: UITableView!
     
-    let twetMediaCellIdentifier = "TweetMediaCell"
+    private let twetMediaCellIdentifier = "TweetMediaCell"
     var tweetVM: TweetViewModel?
-//    var filteredVariants: [Variants]?
-    var sortedFilteredVariants: [Variants]?
-    var tweetDate: String {
+    private var sortedFilteredVariants: [Variants]?
+    private var tweetDate: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "hh:mm - MMM dd, YYYY"
         let date: String = dateFormatter.string(from: tweetVM?.createdAt ?? Date())

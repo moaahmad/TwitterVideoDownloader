@@ -10,12 +10,30 @@ import UIKit
 
 class MainViewController: UIViewController {
     
+    @IBOutlet weak var pasteButton: UIBarButtonItem!
     @IBOutlet weak var enterUrlTextField: UITextField!
-    @IBOutlet weak var getTweetButton: UIButton!
+    @IBOutlet weak var getTweetButton: UIButton! {
+        didSet {
+            getTweetButton.layer.cornerRadius = 12
+            getTweetButton.layer.borderWidth = 1
+            getTweetButton.layer.borderColor = UIColor.orange.cgColor
+        }
+    }
     
-    private var tweetVM: TweetViewModel!
+    var tweetVM: TweetViewModel!
     private let tweetDetailSegue = "tweetDetailSegue"
     private var tweetID = ""
+    private let pasteBoard = UIPasteboard.general
+
+    @IBAction func didTapPasteButton(_ sender: Any) {
+        if let pasteString = pasteBoard.string {
+            enterUrlTextField.text = pasteString
+        } else {
+            let alertController = UIAlertController(title: nil, message: "Copy a tweet link first", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Say less", style: .cancel))
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
     
     @IBAction func didTapGetContentButton(_ sender: UIButton) {
         guard let userUrl = self.enterUrlTextField.text else { return }
@@ -27,7 +45,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getTweetButton.layer.cornerRadius = 12
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
