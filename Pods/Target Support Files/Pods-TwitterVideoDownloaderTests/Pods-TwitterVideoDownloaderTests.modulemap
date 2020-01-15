@@ -1,0 +1,6 @@
+framework module Pods_TwitterVideoDownloaderTests {
+  umbrella header "Pods-TwitterVideoDownloaderTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
