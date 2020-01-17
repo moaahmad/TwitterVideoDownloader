@@ -48,7 +48,7 @@ class TweetDetailViewController: UIViewController {
     }
     @IBOutlet weak var tableView: UITableView!
     
-    private let twetMediaCellIdentifier = "TweetMediaCell"
+    private let tweetMediaCellIdentifier = "TweetMediaCell"
     var tweetVM: TweetViewModel?
     private var sortedFilteredVariants: [Variants]?
     private var tweetDate: String {
@@ -108,7 +108,7 @@ extension TweetDetailViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: twetMediaCellIdentifier, for: indexPath) as? TweetMediaTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: tweetMediaCellIdentifier, for: indexPath) as? TweetMediaTableViewCell else {
             fatalError("TweetMediaTableViewCell not found")
         }
         
@@ -122,12 +122,14 @@ extension TweetDetailViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: twetMediaCellIdentifier, for: indexPath) as? TweetMediaTableViewCell else {
+        
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: tweetMediaCellIdentifier, for: indexPath) as? TweetMediaTableViewCell else {
             fatalError("TweetMediaTableViewCell not found")
         }
         cell.indexPathRow = indexPath.row
         cell.videoUrl = self.tweetVM?.variants[indexPath.row].url
-
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

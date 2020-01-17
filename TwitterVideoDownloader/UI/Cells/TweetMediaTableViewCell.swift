@@ -13,7 +13,7 @@ class TweetMediaTableViewCell: UITableViewCell {
     
     @IBOutlet weak var mediaTypeLabel: UILabel!
     @IBOutlet weak var bitrateLabel: UILabel!
-    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton! 
     
     let generator = UINotificationFeedbackGenerator()
     var tweetVM: TweetViewModel!

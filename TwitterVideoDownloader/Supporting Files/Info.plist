@@ -75,7 +75,7 @@
 		<string>twitterauth</string>
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>saves</string>
+	<string>This app saves videos to your photo library.</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

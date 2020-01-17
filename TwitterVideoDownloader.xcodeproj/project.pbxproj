@@ -50,6 +50,7 @@
 		0AB38151A1B87420DA136873 /* Pods_TwitterVideoDownloader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TwitterVideoDownloader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		202C936C2DACA4A453B3B9E3 /* Pods-TwitterVideoDownloaderUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterVideoDownloaderUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TwitterVideoDownloaderUITests/Pods-TwitterVideoDownloaderUITests.release.xcconfig"; sourceTree = "<group>"; };
 		36017B038B175D1DD46707BF /* Pods-TwitterVideoDownloaderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterVideoDownloaderUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TwitterVideoDownloaderUITests/Pods-TwitterVideoDownloaderUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		4E5AE18923D1DC350066020F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E5BC4EA23C932D5006671E9 /* TweetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetViewModel.swift; sourceTree = "<group>"; };
 		4E5CE41823C9E3E800A964C0 /* UIImageView+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+URL.swift"; sourceTree = "<group>"; };
 		4E5CE41A23C9F21C00A964C0 /* UIImage+Rounded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Rounded.swift"; sourceTree = "<group>"; };
@@ -68,7 +69,6 @@
 		F08364D323C4EA0A009C74A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F08364D523C4EA14009C74A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F08364D823C4EA14009C74A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		F08364DA23C4EA14009C74A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F08364DF23C4EA14009C74A1 /* TwitterVideoDownloaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwitterVideoDownloaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F08364E323C4EA14009C74A1 /* TwitterVideoDownloaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterVideoDownloaderTests.swift; sourceTree = "<group>"; };
 		F08364E523C4EA14009C74A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -119,6 +119,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4E5AE17B23D1D4950066020F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4E5AE18923D1DC350066020F /* Info.plist */,
+				F08364D523C4EA14009C74A1 /* Assets.xcassets */,
+				F08364D723C4EA14009C74A1 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4E5AE17C23D1D4E60066020F /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				F0B07AFF23C7862A007DCB27 /* Controllers */,
+				4E5CE41F23CA5FC000A964C0 /* Cells */,
+				F08364D223C4EA0A009C74A1 /* Main.storyboard */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		4E5CE41723C9DE7000A964C0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +152,7 @@
 		4E5CE41C23C9F76C00A964C0 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				4E5CE41723C9DE7000A964C0 /* Extensions */,
 				4E5CE41D23CA449A00A964C0 /* DateConverter.swift */,
 			);
 			path = Utilities;
@@ -188,14 +209,9 @@
 				F0B07AFD23C78603007DCB27 /* Model */,
 				F0B07AFE23C7860C007DCB27 /* View Model */,
 				F0A2DEC523C889FF00A26017 /* Services */,
-				F0B07AFF23C7862A007DCB27 /* Controllers */,
-				4E5CE41F23CA5FC000A964C0 /* Cells */,
-				4E5CE41723C9DE7000A964C0 /* Extensions */,
+				4E5AE17C23D1D4E60066020F /* UI */,
 				4E5CE41C23C9F76C00A964C0 /* Utilities */,
-				F08364D223C4EA0A009C74A1 /* Main.storyboard */,
-				F08364D523C4EA14009C74A1 /* Assets.xcassets */,
-				F08364D723C4EA14009C74A1 /* LaunchScreen.storyboard */,
-				F08364DA23C4EA14009C74A1 /* Info.plist */,
+				4E5AE17B23D1D4950066020F /* Supporting Files */,
 			);
 			path = TwitterVideoDownloader;
 			sourceTree = "<group>";
@@ -677,7 +693,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D8T996G46R;
-				INFOPLIST_FILE = TwitterVideoDownloader/Info.plist;
+				INFOPLIST_FILE = "TwitterVideoDownloader/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -696,7 +712,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D8T996G46R;
-				INFOPLIST_FILE = TwitterVideoDownloader/Info.plist;
+				INFOPLIST_FILE = "TwitterVideoDownloader/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -11,7 +11,7 @@ import Foundation
 extension String {
     var extractTweetID: String {
         var tweetIdValue = ""
-        if let lastForwardSlash = self.range(of: "/", options: .backwards) {
+        if let lastForwardSlash = self.range(of: "status/", options: .backwards) {
             let IdValue = String(self.suffix(from: lastForwardSlash.upperBound))
             if IdValue.contains("?s=20") {
                 let subIdValue = IdValue.dropLast(5)

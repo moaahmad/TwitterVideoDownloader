@@ -16,36 +16,47 @@ class MainViewController: UIViewController {
         didSet {
             getTweetButton.layer.cornerRadius = 12
             getTweetButton.layer.borderWidth = 1
-            getTweetButton.layer.borderColor = UIColor.orange.cgColor
+            getTweetButton.layer.borderColor = UIColor.systemOrange.cgColor
         }
     }
     
     var tweetVM: TweetViewModel!
     private let tweetDetailSegue = "tweetDetailSegue"
     private var tweetID = ""
+    private var isTweetID = false
     private let pasteBoard = UIPasteboard.general
-
+    
     @IBAction func didTapPasteButton(_ sender: Any) {
         if let pasteString = pasteBoard.string {
             enterUrlTextField.text = pasteString
         } else {
-            let alertController = UIAlertController(title: nil, message: "Copy a tweet link first", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Say less", style: .cancel))
-            self.present(alertController, animated: true, completion: nil)
+            presentAlert(message: "Copy a Tweet link first", cancel: "Say less")
         }
     }
     
     @IBAction func didTapGetContentButton(_ sender: UIButton) {
-        guard let userUrl = self.enterUrlTextField.text else { return }
-        tweetID = userUrl.extractTweetID
+        guard let userURL = self.enterUrlTextField.text,
+            !self.enterUrlTextField.text!.isEmpty else {
+                return presentAlert(message: "Please paste in a Tweet link",
+                                    cancel: "Say less")
+        }
+        tweetID = userURL.extractTweetID
+        
+        guard !tweetID.isEmpty else {
+            return presentAlert(message: "Please paste in a Tweet link",
+                                cancel: "Say less")
+        }
+        isTweetID = true
         loadTweet(with: tweetID) {
             self.performSegue(withIdentifier: self.tweetDetailSegue, sender: nil)
+            self.isTweetID = false
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
+        dismissKeyboardOnTap()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -62,5 +73,17 @@ class MainViewController: UIViewController {
                 completion()
             }
         }
+    }
+    
+    private func dismissKeyboardOnTap() {
+        let tap = UITapGestureRecognizer(target: self.view,
+                                         action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
+    }
+    
+    private func presentAlert(message: String, cancel: String) {
+        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: cancel, style: .cancel))
+        self.present(alertController, animated: true, completion: nil)
     }
 }
