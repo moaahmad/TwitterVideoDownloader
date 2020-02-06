@@ -8,9 +8,16 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+enum MediaSource {
+    case twitter
+    case instagram
+    case youtube
+}
+
+class MainTableViewController: UITableViewController {
     
     @IBOutlet weak var pasteButton: UIBarButtonItem!
+    @IBOutlet weak var sourceSegmentedControl: UISegmentedControl!
     @IBOutlet weak var enterUrlTextField: UITextField!
     @IBOutlet weak var findItButton: UIButton! {
         didSet {
@@ -23,10 +30,11 @@ class MainViewController: UIViewController {
     private let tweetDetailSegue = "tweetDetailSegue"
     private let pasteBoard = UIPasteboard.general
     private var tweetID = ""
+    private var selectedMediaSource = MediaSource.twitter
     private var isTweetID = false
-    var tweetVM: TweetViewModel? = nil
+    let mediaProvider = MediaProvider()
     
-    @IBAction func didTapPasteButton(_ sender: UIButton) {
+    @IBAction func didTapPasteButton(_ sender: Any) {
         if let pasteString = pasteBoard.string {
             enterUrlTextField.text = pasteString
         } else {
@@ -34,7 +42,18 @@ class MainViewController: UIViewController {
         }
     }
     
-    //TODO: Refactor to be source agnostic, right now it only uses Twitter
+    @IBAction func mediaSourceChanged(_ sender: Any) {
+        switch sourceSegmentedControl.selectedSegmentIndex {
+        case 0:
+            selectedMediaSource = MediaSource.twitter
+        case 1:
+            selectedMediaSource = MediaSource.instagram
+        case 2:
+            selectedMediaSource = MediaSource.youtube
+        default:
+            break
+        }
+    }
     
     @IBAction func didTapFindItButton(_ sender: UIButton) {
         guard let enteredURL = self.enterUrlTextField.text,
@@ -42,32 +61,14 @@ class MainViewController: UIViewController {
                 return presentAlert(message: "Please paste in a Tweet link",
                                     cancel: "Say less")
         }
-        tweetID = extractMediaID(withURL: enteredURL)
+        tweetID = mediaProvider.extractMediaID(withURL: enteredURL)
         
         guard !tweetID.isEmpty else {
             return presentAlert(message: "Please paste in a Tweet link",
                                 cancel: "Say less")
         }
         isTweetID = true
-        fetchTweet(with: tweetID) {
-            self.performSegue(withIdentifier: self.tweetDetailSegue, sender: nil)
-            self.isTweetID = false
-        }
-    }
-    
-    func extractMediaID(withURL urlString: String) -> String {
-        
-        var tweetIdValue = ""
-        if let lastForwardSlash = urlString.range(of: "status/", options: .backwards) {
-            let IdValue = String(urlString.suffix(from: lastForwardSlash.upperBound))
-            if IdValue.contains("?s=20") {
-                let subIdValue = IdValue.dropLast(5)
-                tweetIdValue = String(subIdValue)
-            } else {
-                tweetIdValue = IdValue
-            }
-        }
-        return tweetIdValue
+        fetchMediaFromSource()
     }
     
     override func viewDidLoad() {
@@ -79,16 +80,21 @@ class MainViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == tweetDetailSegue {
             let tweetDetailVC = segue.destination as! TweetDetailViewController
-            tweetDetailVC.tweetVM = self.tweetVM
+            tweetDetailVC.tweetVM = mediaProvider.tweetVM
         }
     }
-    
-    private func fetchTweet(with Id: String, completion: @escaping () -> ()) {
-        TwitterWebservice().getTweet(params: ["id": tweetID]) { tweet in
-            if let tweet = tweet {
-                self.tweetVM = TweetViewModel(tweet)
-                completion()
+
+    private func fetchMediaFromSource() {
+        switch selectedMediaSource {
+        case .twitter:
+            mediaProvider.fetchTweet(with: tweetID) {
+                self.performSegue(withIdentifier: self.tweetDetailSegue, sender: nil)
+                self.isTweetID = false
             }
+        case .instagram:
+            print("downloading instagram video")
+        case .youtube:
+            print("downloading youtube video")
         }
     }
     

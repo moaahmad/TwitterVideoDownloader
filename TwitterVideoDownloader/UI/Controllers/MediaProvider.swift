@@ -10,36 +10,56 @@ import Foundation
 
 final class MediaProvider {
     
-    // provide one interface for fetching media
-    enum MediaSource {
-        case twitter
-        case youtube
-        case instagram
-    }
+    var tweetVM: TweetViewModel? = nil
+        
+//    func fetchMedia(withURLString urlString: String, completion: @escaping () -> Void) { //Will return a model object
+//        switch MediaSource.self {
+//        case .twitter:
+//            //twitterService.getMediaObject
+//            break
+//        case .youtube:
+//            //youtubeService.getMediaObject
+//            
+//            break
+//        case .instagram:
+//            break
+//        }
+//    }
     
-    func fetchMedia(withURLString urlString: String, completion: @escaping () -> Void) { //Will return a model object
-        let urlType = checkURLType(urlString: urlString)
-        switch urlType {
-        case .twitter:
-            //twitterService.getMediaObject
-            break
-        case .youtube:
-            //youtubeService.getMediaObject
-            break
-        case .instagram:
-            break
+    //check url for media provider i.e youtube, twitter etc
+
+//    func checkURLType(urlString: String) -> MediaSource{
+//        //check string and return source
+////        if urlString.baseURL "twitter.com"
+//
+//        return .youtube
+//    }
+    
+    func fetchTweet(with Id: String, completion: @escaping () -> ()) {
+        TwitterWebservice().getTweet(params: ["id": Id]) { tweet in
+            if let tweet = tweet {
+                self.tweetVM = TweetViewModel(tweet)
+                completion()
+            }
         }
     }
     
-    //check url for media provider i.e youtube, twitter etc
+    //TODO: Refactor to be source agnostic, right now it only uses Twitter
     
-    func checkURLType(urlString: String) -> MediaSource{
-        //check string and return source
-//        if urlString.baseURL "twitter.com"
+    func extractMediaID(withURL urlString: String) -> String {
         
-        return .youtube
+        var tweetIdValue = ""
+        if let lastForwardSlash = urlString.range(of: "status/", options: .backwards) {
+            let IdValue = String(urlString.suffix(from: lastForwardSlash.upperBound))
+            if IdValue.contains("?s=20") {
+                let subIdValue = IdValue.dropLast(5)
+                tweetIdValue = String(subIdValue)
+            } else {
+                tweetIdValue = IdValue
+            }
+        }
+        return tweetIdValue
     }
-    
     
     
     //get media object
