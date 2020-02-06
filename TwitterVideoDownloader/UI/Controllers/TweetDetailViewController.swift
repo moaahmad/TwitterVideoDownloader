@@ -50,7 +50,7 @@ class TweetDetailViewController: UIViewController {
     
     private let tweetMediaCellIdentifier = "TweetMediaCell"
     var tweetVM: TweetViewModel?
-    private var sortedFilteredVariants: [Variants]?
+    private var sortedFilteredMediaVariants: [Variants]?
     private var tweetDate: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "hh:mm - MMM dd, YYYY"
@@ -64,7 +64,7 @@ class TweetDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        makeImageCircular(image: profileImage)
+        profileImage.makeImageCircular()
         configureTableView()
         if let tweetVM = tweetVM {
             configureDetails(tweetViewModel: tweetVM)
@@ -73,7 +73,7 @@ class TweetDetailViewController: UIViewController {
         }
         let variants = tweetVM?.variants
         let filteredVariants = variants?.filter { $0.contentType == "video/mp4" }
-        sortedFilteredVariants = filteredVariants?.sorted { $0.bitrate! < $1.bitrate! }
+        sortedFilteredMediaVariants = filteredVariants?.sorted { $0.bitrate! < $1.bitrate! }
     }
     
     private func configureTableView() {
@@ -93,17 +93,12 @@ class TweetDetailViewController: UIViewController {
         guard let previewUrl = URL(string: (tweetVM?.mediaPreviewUrl)!) else { return }
         self.contentPreviewImage.load(url: previewUrl)
     }
-    
-    private func makeImageCircular(image: UIImageView) {
-        image.layer.masksToBounds = true
-        image.layer.cornerRadius = image.bounds.width / 2
-    }
 }
 
 extension TweetDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sortedFilteredVariants?.count ?? 0
+        return sortedFilteredMediaVariants?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -112,17 +107,16 @@ extension TweetDetailViewController: UITableViewDelegate, UITableViewDataSource 
             fatalError("TweetMediaTableViewCell not found")
         }
         
-        let videoVariants = self.sortedFilteredVariants?[indexPath.row]
-        cell.mediaTypeLabel.text = "Type: \(videoVariants?.contentType ?? "Unknown")"
+        let videoVariants = self.sortedFilteredMediaVariants?[indexPath.row]
+        cell.mediaTypeLabel.text = videoVariants?.contentType ?? "Unknown"
         let convertedBitrate = (videoVariants?.bitrate)! / 1000
-        cell.bitrateLabel.text = "Bitrate: \(convertedBitrate) kbps"
+        cell.bitrateLabel.text = "\(convertedBitrate) kbps"
         cell.indexPathRow = 0
         cell.videoUrl = videoVariants?.url
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: tweetMediaCellIdentifier, for: indexPath) as? TweetMediaTableViewCell else {
             fatalError("TweetMediaTableViewCell not found")
@@ -139,6 +133,14 @@ extension TweetDetailViewController: UITableViewDelegate, UITableViewDataSource 
         } else {
             return "Media Type: \(tweetVM?.mediaType ?? "Unknown")"
         }
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let config = UIContextualAction(style: .normal, title: "Edit") {_,_,_ in
+            print("This is working")
+        }
+        let action = UISwipeActionsConfiguration(actions: [config])
+        return action
     }
 }
 

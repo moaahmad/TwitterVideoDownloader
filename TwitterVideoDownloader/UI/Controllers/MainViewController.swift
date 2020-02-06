@@ -12,21 +12,21 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var pasteButton: UIBarButtonItem!
     @IBOutlet weak var enterUrlTextField: UITextField!
-    @IBOutlet weak var getTweetButton: UIButton! {
+    @IBOutlet weak var findItButton: UIButton! {
         didSet {
-            getTweetButton.layer.cornerRadius = 12
-            getTweetButton.layer.borderWidth = 1
-            getTweetButton.layer.borderColor = UIColor.systemOrange.cgColor
+            findItButton.layer.cornerRadius = 12
+            findItButton.layer.borderWidth = 1
+            findItButton.layer.borderColor = UIColor.systemOrange.cgColor
         }
     }
     
-    var tweetVM: TweetViewModel!
     private let tweetDetailSegue = "tweetDetailSegue"
+    private let pasteBoard = UIPasteboard.general
     private var tweetID = ""
     private var isTweetID = false
-    private let pasteBoard = UIPasteboard.general
+    var tweetVM: TweetViewModel? = nil
     
-    @IBAction func didTapPasteButton(_ sender: Any) {
+    @IBAction func didTapPasteButton(_ sender: UIButton) {
         if let pasteString = pasteBoard.string {
             enterUrlTextField.text = pasteString
         } else {
@@ -34,23 +34,40 @@ class MainViewController: UIViewController {
         }
     }
     
-    @IBAction func didTapGetContentButton(_ sender: UIButton) {
-        guard let userURL = self.enterUrlTextField.text,
+    //TODO: Refactor to be source agnostic, right now it only uses Twitter
+    
+    @IBAction func didTapFindItButton(_ sender: UIButton) {
+        guard let enteredURL = self.enterUrlTextField.text,
             !self.enterUrlTextField.text!.isEmpty else {
                 return presentAlert(message: "Please paste in a Tweet link",
                                     cancel: "Say less")
         }
-        tweetID = userURL.extractTweetID
+        tweetID = extractMediaID(withURL: enteredURL)
         
         guard !tweetID.isEmpty else {
             return presentAlert(message: "Please paste in a Tweet link",
                                 cancel: "Say less")
         }
         isTweetID = true
-        loadTweet(with: tweetID) {
+        fetchTweet(with: tweetID) {
             self.performSegue(withIdentifier: self.tweetDetailSegue, sender: nil)
             self.isTweetID = false
         }
+    }
+    
+    func extractMediaID(withURL urlString: String) -> String {
+        
+        var tweetIdValue = ""
+        if let lastForwardSlash = urlString.range(of: "status/", options: .backwards) {
+            let IdValue = String(urlString.suffix(from: lastForwardSlash.upperBound))
+            if IdValue.contains("?s=20") {
+                let subIdValue = IdValue.dropLast(5)
+                tweetIdValue = String(subIdValue)
+            } else {
+                tweetIdValue = IdValue
+            }
+        }
+        return tweetIdValue
     }
     
     override func viewDidLoad() {
@@ -66,8 +83,8 @@ class MainViewController: UIViewController {
         }
     }
     
-    private func loadTweet(with Id: String, completion: @escaping () -> ()) {
-        Webservice().getTweet(params: ["id": tweetID]) { tweet in
+    private func fetchTweet(with Id: String, completion: @escaping () -> ()) {
+        TwitterWebservice().getTweet(params: ["id": tweetID]) { tweet in
             if let tweet = tweet {
                 self.tweetVM = TweetViewModel(tweet)
                 completion()
@@ -75,15 +92,17 @@ class MainViewController: UIViewController {
         }
     }
     
+    private func presentAlert(message: String, cancel: String) {
+        let alertController = UIAlertController(title: nil,
+                                                message: message,
+                                                preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: cancel, style: .cancel))
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     private func dismissKeyboardOnTap() {
         let tap = UITapGestureRecognizer(target: self.view,
                                          action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
-    }
-    
-    private func presentAlert(message: String, cancel: String) {
-        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: cancel, style: .cancel))
-        self.present(alertController, animated: true, completion: nil)
     }
 }

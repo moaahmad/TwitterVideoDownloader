@@ -9,7 +9,7 @@
 import Foundation
 import TwitterKit
 
-class Webservice {
+class TwitterWebservice {
     
     let client = TWTRAPIClient()
     let baseUrl = "https://api.twitter.com/1.1/statuses/show.json"

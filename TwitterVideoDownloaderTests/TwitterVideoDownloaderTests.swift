@@ -30,5 +30,13 @@ class TwitterVideoDownloaderTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func test_checkURLType_twitterIsRetured() {
+        let sut = MediaProvider()
+        
+        let value = sut.checkURLType(urlString: "")
+        
+        XCTAssertEqual(value, MediaProvider.MediaSource.twitter)
+    }
 
 }

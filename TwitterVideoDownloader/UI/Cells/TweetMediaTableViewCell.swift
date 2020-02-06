@@ -13,22 +13,26 @@ class TweetMediaTableViewCell: UITableViewCell {
     
     @IBOutlet weak var mediaTypeLabel: UILabel!
     @IBOutlet weak var bitrateLabel: UILabel!
-    @IBOutlet weak var saveButton: UIButton! 
+    @IBOutlet weak var saveButtonImage: UIImageView! {
+        didSet {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(didTapSaveButton))
+            self.addGestureRecognizer(tap)
+        }
+    }
     
     let generator = UINotificationFeedbackGenerator()
-    var tweetVM: TweetViewModel!
     var indexPathRow: Int!
     var videoUrl: String!
     var hasDownloaded = false
     
-    @IBAction func didTapSaveButton(_ sender: Any) {
+    @objc func didTapSaveButton() {
         print("Save button was tapped")
         downloadVideo(at: indexPathRow, with: videoUrl) {
             self.hasDownloaded = true
         }
     }
     
-    private func downloadVideo(at index: Int, with videoUrl: String, completion: @escaping () -> ()) {
+    func downloadVideo(at index: Int, with videoUrl: String, completion: @escaping () -> ()) {
         DispatchQueue.global(qos: .background).async {
             
             if let url = URL(string: videoUrl), let urlData = NSData(contentsOf: url) {
