@@ -26,7 +26,8 @@ class TweetMediaTableViewCell: UITableViewCell {
     var hasDownloaded = false
     
     @objc func didTapSaveButton() {
-        print("Save button was tapped")
+        guard let view = superview else { return }
+        LoaderHelper.showLoadingView(view: view)
         downloadVideo(at: indexPathRow, with: videoUrl) {
             self.hasDownloaded = true
         }
@@ -51,6 +52,7 @@ class TweetMediaTableViewCell: UITableViewCell {
                             print("Succesfully Saved")
                             self.generator.notificationOccurred(.success)
                             self.hasDownloaded = true
+                            LoaderHelper.dismissLoadingView()
                         } else {
                             print(error?.localizedDescription)
                             self.generator.notificationOccurred(.error)

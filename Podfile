@@ -6,7 +6,7 @@ target 'TwitterVideoDownloader' do
   use_frameworks!
 
   # Pods for TwitterVideoDownloader
-  pod 'TwitterKit'
+  pod 'TwitterKit5'
   
   target 'TwitterVideoDownloaderTests' do
     inherit! :search_paths

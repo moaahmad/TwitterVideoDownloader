@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fsL-Wn-svH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fsL-Wn-svH">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -81,15 +81,14 @@
                                     <constraint firstAttribute="height" constant="275" id="bXe-hB-z21"/>
                                 </constraints>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="hs4-f6-b6s">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="hs4-f6-b6s">
                                 <rect key="frame" x="0.0" y="445" width="414" height="451"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetMediaCell" rowHeight="70" id="KuD-d7-czZ" customClass="TweetMediaTableViewCell" customModule="TwitterVideoDownloader" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="414" height="70"/>
+                                        <rect key="frame" x="20" y="55.5" width="374" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KuD-d7-czZ" id="esJ-TR-c25">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="O2U-1y-Qvf">
@@ -101,7 +100,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="ha2-Fu-Dw4">
-                                                    <rect key="frame" x="53" y="15" width="96" height="40"/>
+                                                    <rect key="frame" x="57" y="15" width="120" height="40"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="left" translatesAutoresizingMaskIntoConstraints="NO" id="jMm-zh-Qgv">
                                                             <rect key="frame" x="0.0" y="0.0" width="70" height="23"/>
@@ -114,25 +113,31 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="4Fh-8P-nQB">
-                                                            <rect key="frame" x="0.0" y="23" width="96" height="17"/>
+                                                            <rect key="frame" x="0.0" y="23" width="120" height="17"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bitrate:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVf-Ji-YNF">
                                                                     <rect key="frame" x="0.0" y="0.0" width="47" height="17"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="47" id="dhF-FV-QAj"/>
+                                                                    </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bitrate" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lTo-1v-dXq">
-                                                                    <rect key="frame" x="49" y="0.0" width="47" height="17"/>
+                                                                    <rect key="frame" x="49" y="0.0" width="71" height="17"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="120" id="RY9-km-S67"/>
+                                                            </constraints>
                                                         </stackView>
                                                     </subviews>
                                                 </stackView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.down" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ayR-fh-WBh">
-                                                    <rect key="frame" x="369" y="22.5" width="25" height="25"/>
+                                                    <rect key="frame" x="329" y="22.5" width="25" height="25"/>
                                                     <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="cvv-K9-JFF"/>
@@ -147,7 +152,7 @@
                                                 <constraint firstItem="O2U-1y-Qvf" firstAttribute="centerY" secondItem="esJ-TR-c25" secondAttribute="centerY" id="ltd-wG-cLb"/>
                                                 <constraint firstAttribute="trailing" secondItem="ayR-fh-WBh" secondAttribute="trailing" constant="20" id="tEc-i5-RFi"/>
                                                 <constraint firstItem="O2U-1y-Qvf" firstAttribute="leading" secondItem="esJ-TR-c25" secondAttribute="leadingMargin" id="uO1-8P-832"/>
-                                                <constraint firstItem="ha2-Fu-Dw4" firstAttribute="leading" secondItem="O2U-1y-Qvf" secondAttribute="trailingMargin" constant="16" id="w03-0e-b5D"/>
+                                                <constraint firstItem="ha2-Fu-Dw4" firstAttribute="leading" secondItem="O2U-1y-Qvf" secondAttribute="trailingMargin" constant="20" id="w03-0e-b5D"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -196,7 +201,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="square.and.arrow.down" catalog="system" width="60" height="64"/>
-        <image name="video" catalog="system" width="64" height="40"/>
+        <image name="square.and.arrow.down" catalog="system" width="121" height="128"/>
+        <image name="video" catalog="system" width="128" height="83"/>
     </resources>
 </document>

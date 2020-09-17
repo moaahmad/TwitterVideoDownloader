@@ -17,7 +17,7 @@ enum MediaSource {
 class MainTableViewController: UITableViewController {
     
     @IBOutlet weak var pasteButton: UIBarButtonItem!
-    @IBOutlet weak var sourceSegmentedControl: UISegmentedControl!
+//    @IBOutlet weak var sourceSegmentedControl: UISegmentedControl!
     @IBOutlet weak var enterUrlTextField: UITextField!
     @IBOutlet weak var findItButton: UIButton! {
         didSet {
@@ -33,6 +33,19 @@ class MainTableViewController: UITableViewController {
     private var selectedMediaSource = MediaSource.twitter
     private var isTweetID = false
     let mediaProvider = MediaProvider()
+        
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationController?.navigationBar.prefersLargeTitles = true
+        dismissKeyboardOnTap()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == tweetDetailSegue {
+            let tweetDetailVC = segue.destination as! TweetDetailViewController
+            tweetDetailVC.tweetVM = mediaProvider.tweetVM
+        }
+    }
     
     @IBAction func didTapPasteButton(_ sender: Any) {
         if let pasteString = pasteBoard.string {
@@ -42,18 +55,18 @@ class MainTableViewController: UITableViewController {
         }
     }
     
-    @IBAction func mediaSourceChanged(_ sender: Any) {
-        switch sourceSegmentedControl.selectedSegmentIndex {
-        case 0:
-            selectedMediaSource = MediaSource.twitter
-        case 1:
-            selectedMediaSource = MediaSource.instagram
-        case 2:
-            selectedMediaSource = MediaSource.youtube
-        default:
-            break
-        }
-    }
+    //    @IBAction func mediaSourceChanged(_ sender: Any) {
+    //        switch sourceSegmentedControl.selectedSegmentIndex {
+    //        case 0:
+    //            selectedMediaSource = MediaSource.twitter
+    //        case 1:
+    //            selectedMediaSource = MediaSource.instagram
+    //        case 2:
+    //            selectedMediaSource = MediaSource.youtube
+    //        default:
+    //            break
+    //        }
+    //    }
     
     @IBAction func didTapFindItButton(_ sender: UIButton) {
         guard let enteredURL = self.enterUrlTextField.text,
@@ -69,19 +82,6 @@ class MainTableViewController: UITableViewController {
         }
         isTweetID = true
         fetchMediaFromSource()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationController?.navigationBar.prefersLargeTitles = true
-        dismissKeyboardOnTap()
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == tweetDetailSegue {
-            let tweetDetailVC = segue.destination as! TweetDetailViewController
-            tweetDetailVC.tweetVM = mediaProvider.tweetVM
-        }
     }
 
     private func fetchMediaFromSource() {

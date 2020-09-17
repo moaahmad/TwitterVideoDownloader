@@ -19,6 +19,7 @@
 		4E7D813123EC5BDF009EE4E0 /* MediaDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E7D813023EC5BDF009EE4E0 /* MediaDetail.storyboard */; };
 		D6F04E21E4C356FDBEF9712F /* Pods_TwitterVideoDownloaderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 948035061EC62F9B44E2B966 /* Pods_TwitterVideoDownloaderUITests.framework */; };
 		EBF2E6A78013F167243AAAE6 /* Pods_TwitterVideoDownloaderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92695C1B703DA8762B613074 /* Pods_TwitterVideoDownloaderTests.framework */; };
+		F008D64C2513D7270070BD8F /* LoaderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F008D64B2513D7270070BD8F /* LoaderHelper.swift */; };
 		F08364CD23C4EA0A009C74A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08364CC23C4EA0A009C74A1 /* AppDelegate.swift */; };
 		F08364CF23C4EA0A009C74A1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08364CE23C4EA0A009C74A1 /* SceneDelegate.swift */; };
 		F08364D423C4EA0A009C74A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F08364D223C4EA0A009C74A1 /* Main.storyboard */; };
@@ -69,6 +70,7 @@
 		9F12119DAD06DF95A1A1EEF7 /* Pods-TwitterVideoDownloaderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterVideoDownloaderTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TwitterVideoDownloaderTests/Pods-TwitterVideoDownloaderTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D9C785B63ED73190D14ACCB6 /* Pods-TwitterVideoDownloaderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterVideoDownloaderTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TwitterVideoDownloaderTests/Pods-TwitterVideoDownloaderTests.release.xcconfig"; sourceTree = "<group>"; };
 		DFE666B83DEE976F6D5751A2 /* Pods-TwitterVideoDownloader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterVideoDownloader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TwitterVideoDownloader/Pods-TwitterVideoDownloader.debug.xcconfig"; sourceTree = "<group>"; };
+		F008D64B2513D7270070BD8F /* LoaderHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderHelper.swift; sourceTree = "<group>"; };
 		F08364C923C4EA0A009C74A1 /* TwitterVideoDownloader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterVideoDownloader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F08364CC23C4EA0A009C74A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F08364CE23C4EA0A009C74A1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			children = (
 				4E5CE41723C9DE7000A964C0 /* Extensions */,
 				4E5CE41D23CA449A00A964C0 /* DateConverter.swift */,
+				F008D64B2513D7270070BD8F /* LoaderHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -532,6 +535,7 @@
 				4E5CE41E23CA449A00A964C0 /* DateConverter.swift in Sources */,
 				4E5CE41923C9E3E800A964C0 /* UIImageView+URL.swift in Sources */,
 				4E5CE41B23C9F21C00A964C0 /* UIImage+Circular.swift in Sources */,
+				F008D64C2513D7270070BD8F /* LoaderHelper.swift in Sources */,
 				4E5CE42123CA601500A964C0 /* TweetMediaTableViewCell.swift in Sources */,
 				F08364FF23C4F63B009C74A1 /* TweetDetailViewController.swift in Sources */,
 				4E1E6A4023DF24580018E8BD /* UIViewController+ActivityIndicator.swift in Sources */,
@@ -718,6 +722,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.projects.TwitterVideoDownloader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -737,6 +742,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.projects.TwitterVideoDownloader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

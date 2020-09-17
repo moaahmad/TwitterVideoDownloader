@@ -57,23 +57,25 @@ class TweetDetailViewController: UIViewController {
         let date: String = dateFormatter.string(from: tweetVM?.createdAt ?? Date())
         return date
     }
-    
-    @IBAction func didTapDoneButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         profileImage.makeImageCircular()
         configureTableView()
-        if let tweetVM = tweetVM {
-            configureDetails(tweetViewModel: tweetVM)
-        } else {
-            fatalError("Error: Data is not being passed correctly")
-        }
-        let variants = tweetVM?.variants
-        let filteredVariants = variants?.filter { $0.contentType == "video/mp4" }
-        sortedFilteredMediaVariants = filteredVariants?.sorted { $0.bitrate! < $1.bitrate! }
+
+        guard let tweetVM = tweetVM else { return }
+        configureDetails(tweetViewModel: tweetVM)
+        let variants = tweetVM.variants
+        let filteredVariants = variants.filter { $0.contentType == "video/mp4" }
+        sortedFilteredMediaVariants = filteredVariants.sorted { $0.bitrate! < $1.bitrate! }
+    }
+    
+    @IBAction func didTapDoneButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
     private func configureTableView() {

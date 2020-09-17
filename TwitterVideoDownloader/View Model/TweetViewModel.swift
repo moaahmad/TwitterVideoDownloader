@@ -21,7 +21,6 @@ extension TweetViewModel {
 extension TweetViewModel {
     
     var createdAt: Date {
-        
         let date = DateConverter.toDate(dateString: self.tweet.createdAt!, format: .ddMMM)
         return date ?? Date()
     }
