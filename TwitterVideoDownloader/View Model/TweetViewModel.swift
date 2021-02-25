@@ -5,7 +5,6 @@
 //  Created by Mo Ahmad on 10/01/2020.
 //  Copyright © 2020 Ahmad, Mohammed (UK - London). All rights reserved.
 //
-
 import Foundation
 
 struct TweetViewModel {
@@ -19,7 +18,6 @@ extension TweetViewModel {
 }
 
 extension TweetViewModel {
-    
     var createdAt: Date {
         let date = DateConverter.toDate(dateString: self.tweet.createdAt!, format: .ddMMM)
         return date ?? Date()

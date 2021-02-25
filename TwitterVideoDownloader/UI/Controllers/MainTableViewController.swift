@@ -14,10 +14,9 @@ enum MediaSource {
     case youtube
 }
 
-class MainTableViewController: UITableViewController {
+final class MainTableViewController: UITableViewController {
     
     @IBOutlet weak var pasteButton: UIBarButtonItem!
-//    @IBOutlet weak var sourceSegmentedControl: UISegmentedControl!
     @IBOutlet weak var enterUrlTextField: UITextField!
     @IBOutlet weak var findItButton: UIButton! {
         didSet {
@@ -54,19 +53,6 @@ class MainTableViewController: UITableViewController {
             presentAlert(message: "Copy a Tweet link first", cancel: "Say less")
         }
     }
-    
-    //    @IBAction func mediaSourceChanged(_ sender: Any) {
-    //        switch sourceSegmentedControl.selectedSegmentIndex {
-    //        case 0:
-    //            selectedMediaSource = MediaSource.twitter
-    //        case 1:
-    //            selectedMediaSource = MediaSource.instagram
-    //        case 2:
-    //            selectedMediaSource = MediaSource.youtube
-    //        default:
-    //            break
-    //        }
-    //    }
     
     @IBAction func didTapFindItButton(_ sender: UIButton) {
         guard let enteredURL = self.enterUrlTextField.text,

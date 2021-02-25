@@ -9,8 +9,7 @@
 import Foundation
 import TwitterKit
 
-class TwitterWebservice {
-    
+final class TwitterWebservice {
     let client = TWTRAPIClient()
     let baseUrl = "https://api.twitter.com/1.1/statuses/show.json"
     var clientError : NSError?
@@ -25,7 +24,6 @@ class TwitterWebservice {
             }
             
             if let data = data {
-                
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 
@@ -38,4 +36,3 @@ class TwitterWebservice {
         }
     }
 }
-

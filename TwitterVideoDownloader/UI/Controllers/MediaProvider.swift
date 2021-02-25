@@ -20,7 +20,6 @@ final class MediaProvider {
     }
     
     func extractMediaID(withURL urlString: String) -> String {
-        
         var tweetIdValue = ""
         if let lastForwardSlash = urlString.range(of: "status/", options: .backwards) {
             let IdValue = String(urlString.suffix(from: lastForwardSlash.upperBound))

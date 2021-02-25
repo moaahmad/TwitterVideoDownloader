@@ -5,11 +5,10 @@
 //  Created by Ahmad, Mohammed (UK - London) on 1/7/20.
 //  Copyright © 2020 Ahmad, Mohammed (UK - London). All rights reserved.
 //
-
 import UIKit
 import Photos
 
-class TweetDetailViewController: UIViewController {
+final class TweetDetailViewController: UIViewController {
     
     @IBOutlet weak var closeButton: UIButton! {
         didSet {
