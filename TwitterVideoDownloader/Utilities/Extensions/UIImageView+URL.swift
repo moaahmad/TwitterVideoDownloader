@@ -15,8 +15,6 @@ extension UIImageView {
                 if let image = UIImage(data: data) {
                     DispatchQueue.main.async {
                         self?.image = image
-//                        self?.layer.masksToBounds = true
-//                        self?.layer.cornerRadius = 200
                     }
                 }
             }

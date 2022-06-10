@@ -3,8 +3,6 @@
 //  TwitterVideoDownloader
 //
 //  Created by Ahmad, Mohammed (UK - London) on 9/17/20.
-//  Copyright © 2020 Ahmad, Mohammed (UK - London). All rights reserved.
-//
 
 import UIKit
 

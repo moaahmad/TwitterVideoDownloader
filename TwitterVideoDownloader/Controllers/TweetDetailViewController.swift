@@ -5,6 +5,7 @@
 //  Created by Ahmad, Mohammed (UK - London) on 1/7/20.
 //  Copyright © 2020 Ahmad, Mohammed (UK - London). All rights reserved.
 //
+
 import UIKit
 import Photos
 
@@ -47,7 +48,8 @@ final class TweetDetailViewController: UIViewController {
     }
     @IBOutlet weak var tableView: UITableView!
     
-    private let tweetMediaCellIdentifier = "TweetMediaCell"
+    private static let tweetMediaCellIdentifier = "TweetMediaCell"
+
     var tweetVM: TweetViewModel?
     private var sortedFilteredMediaVariants: [Variants]?
     private var tweetDate: String {
@@ -55,10 +57,6 @@ final class TweetDetailViewController: UIViewController {
         dateFormatter.dateFormat = "hh:mm - MMM dd, YYYY"
         let date: String = dateFormatter.string(from: tweetVM?.createdAt ?? Date())
         return date
-    }
-        
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
     }
     
     override func viewDidLoad() {
@@ -97,14 +95,15 @@ final class TweetDetailViewController: UIViewController {
 }
 
 extension TweetDetailViewController: UITableViewDelegate, UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sortedFilteredMediaVariants?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: tweetMediaCellIdentifier, for: indexPath) as? TweetMediaTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: Self.tweetMediaCellIdentifier,
+            for: indexPath
+        ) as? TweetMediaTableViewCell else {
             fatalError("TweetMediaTableViewCell not found")
         }
         
@@ -112,18 +111,21 @@ extension TweetDetailViewController: UITableViewDelegate, UITableViewDataSource 
         cell.mediaTypeLabel.text = videoVariants?.contentType ?? "Unknown"
         let convertedBitrate = (videoVariants?.bitrate)! / 1000
         cell.bitrateLabel.text = "\(convertedBitrate) kbps"
-        cell.indexPathRow = 0
-        cell.videoUrl = videoVariants?.url
+        cell.updateCell(indexPathRow: 0, videoURL: videoVariants?.url)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: tweetMediaCellIdentifier, for: indexPath) as? TweetMediaTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: Self.tweetMediaCellIdentifier,
+            for: indexPath
+        ) as? TweetMediaTableViewCell else {
             fatalError("TweetMediaTableViewCell not found")
         }
-        cell.indexPathRow = indexPath.row
-        cell.videoUrl = self.tweetVM?.variants[indexPath.row].url
+        cell.updateCell(
+            indexPathRow: indexPath.row,
+            videoURL: tweetVM?.variants[indexPath.row].url
+        )
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -136,12 +138,14 @@ extension TweetDetailViewController: UITableViewDelegate, UITableViewDataSource 
         }
     }
     
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    func tableView(
+        _ tableView: UITableView,
+        trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath
+    ) -> UISwipeActionsConfiguration? {
         let config = UIContextualAction(style: .normal, title: "Edit") {_,_,_ in
             print("This is working")
         }
-        let action = UISwipeActionsConfiguration(actions: [config])
-        return action
+        return UISwipeActionsConfiguration(actions: [config])
     }
 }
 

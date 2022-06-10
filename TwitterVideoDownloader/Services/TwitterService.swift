@@ -9,14 +9,18 @@
 import Foundation
 import TwitterKit
 
-final class TwitterWebservice {
+final class TwitterService {
     let client = TWTRAPIClient()
-    let baseUrl = "https://api.twitter.com/1.1/statuses/show.json"
+    static let baseUrl = "https://api.twitter.com/1.1/statuses/show.json"
     var clientError : NSError?
     
     func getTweet(params: [String: String], completion: @escaping (Tweet?) -> ()) {
-        
-        let request = client.urlRequest(withMethod: "GET", urlString: baseUrl, parameters: params, error: &clientError)
+        let request = client.urlRequest(
+            withMethod: "GET",
+            urlString: Self.baseUrl,
+            parameters: params,
+            error: &clientError
+        )
         
         client.sendTwitterRequest(request) { (response, data, connectionError) -> Void in
             if connectionError != nil {

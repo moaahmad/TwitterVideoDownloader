@@ -10,8 +10,8 @@ import Foundation
 final class MediaProvider {
     var tweetVM: TweetViewModel? = nil
     
-    func fetchTweet(with Id: String, completion: @escaping () -> ()) {
-        TwitterWebservice().getTweet(params: ["id": Id]) { tweet in
+    func fetchTweet(with Id: String, completion: @escaping () -> Void) {
+        TwitterService().getTweet(params: ["id": Id]) { tweet in
             if let tweet = tweet {
                 self.tweetVM = TweetViewModel(tweet)
                 completion()

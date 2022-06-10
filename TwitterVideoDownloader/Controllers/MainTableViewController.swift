@@ -8,14 +8,10 @@
 
 import UIKit
 
-enum MediaSource {
-    case twitter
-    case instagram
-    case youtube
-}
-
 final class MainTableViewController: UITableViewController {
-    
+
+    // MARK: - IBOutlets
+
     @IBOutlet weak var pasteButton: UIBarButtonItem!
     @IBOutlet weak var enterUrlTextField: UITextField!
     @IBOutlet weak var findItButton: UIButton! {
@@ -25,14 +21,29 @@ final class MainTableViewController: UITableViewController {
             findItButton.layer.borderColor = UIColor.systemOrange.cgColor
         }
     }
-    
-    private let tweetDetailSegue = "tweetDetailSegue"
+
+    // MARK: - Properties
+
+    private static let tweetDetailSegue = "tweetDetailSegue"
+    private let mediaProvider: MediaProvider
     private let pasteBoard = UIPasteboard.general
     private var tweetID = ""
-    private var selectedMediaSource = MediaSource.twitter
     private var isTweetID = false
-    let mediaProvider = MediaProvider()
-        
+
+    // MARK: - Initializers
+
+    init(mediaProvider: MediaProvider = MediaProvider()) {
+        self.mediaProvider = mediaProvider
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - View Lifecycle Methods
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -40,28 +51,30 @@ final class MainTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == tweetDetailSegue {
-            let tweetDetailVC = segue.destination as! TweetDetailViewController
+        if segue.identifier == Self.tweetDetailSegue {
+            guard let tweetDetailVC = segue.destination as? TweetDetailViewController else { return }
             tweetDetailVC.tweetVM = mediaProvider.tweetVM
         }
     }
-    
-    @IBAction func didTapPasteButton(_ sender: Any) {
+
+    // MARK: - IBActions
+
+    @IBAction private func didTapPasteButton(_ sender: Any) {
         if let pasteString = pasteBoard.string {
             enterUrlTextField.text = pasteString
         } else {
             presentAlert(message: "Copy a Tweet link first", cancel: "Say less")
         }
     }
-    
-    @IBAction func didTapFindItButton(_ sender: UIButton) {
+
+    @IBAction private func didTapFindItButton(_ sender: UIButton) {
         guard let enteredURL = self.enterUrlTextField.text,
             !self.enterUrlTextField.text!.isEmpty else {
                 return presentAlert(message: "Please paste in a Tweet link",
                                     cancel: "Say less")
         }
         tweetID = mediaProvider.extractMediaID(withURL: enteredURL)
-        
+
         guard !tweetID.isEmpty else {
             return presentAlert(message: "Please paste in a Tweet link",
                                 cancel: "Say less")
@@ -70,17 +83,12 @@ final class MainTableViewController: UITableViewController {
         fetchMediaFromSource()
     }
 
+    // MARK: - Private Functions
+
     private func fetchMediaFromSource() {
-        switch selectedMediaSource {
-        case .twitter:
-            mediaProvider.fetchTweet(with: tweetID) {
-                self.performSegue(withIdentifier: self.tweetDetailSegue, sender: nil)
-                self.isTweetID = false
-            }
-        case .instagram:
-            print("downloading instagram video")
-        case .youtube:
-            print("downloading youtube video")
+        mediaProvider.fetchTweet(with: tweetID) {
+            self.performSegue(withIdentifier: Self.tweetDetailSegue, sender: nil)
+            self.isTweetID = false
         }
     }
     
