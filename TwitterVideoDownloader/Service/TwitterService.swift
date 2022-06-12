@@ -1,20 +1,21 @@
-//
-//  WebService.swift
-//  TwitterVideoDownloader
-//
-//  Created by Ahmad, Mohammed (UK - London) on 1/10/20.
-//  Copyright © 2020 Ahmad, Mohammed (UK - London). All rights reserved.
-//
-
 import Foundation
 import TwitterKit
 
 final class TwitterService {
-    let client = TWTRAPIClient()
-    static let baseUrl = "https://api.twitter.com/1.1/statuses/show.json"
-    var clientError : NSError?
+    static private let baseUrl = "https://api.twitter.com/1.1/statuses/show.json"
+
+    private let client: TWTRAPIClient
+
+    private var clientError : NSError?
+
+    init(client: TWTRAPIClient = TWTRAPIClient()) {
+        self.client = client
+    }
     
-    func getTweet(params: [String: String], completion: @escaping (Tweet?) -> ()) {
+    func fetchTweet(
+        params: [String: String],
+        completion: @escaping (Tweet?) -> ()
+    ) {
         let request = client.urlRequest(
             withMethod: "GET",
             urlString: Self.baseUrl,
@@ -38,5 +39,15 @@ final class TwitterService {
                 }
             }
         }
+    }
+}
+
+extension Data {
+    var prettyPrintedJSONString: NSString? {
+        guard let object = try? JSONSerialization.jsonObject(with: self, options: []),
+              let data = try? JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted]),
+              let prettyPrintedString = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else { return nil }
+
+        return prettyPrintedString
     }
 }

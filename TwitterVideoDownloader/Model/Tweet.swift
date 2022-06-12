@@ -1,11 +1,3 @@
-//
-//  Tweet.swift
-//  TwitterVideoDownloader
-//
-//  Created by Ahmad, Mohammed (UK - London) on 1/10/20.
-//  Copyright © 2020 Ahmad, Mohammed (UK - London). All rights reserved.
-//
-
 import Foundation
 
 struct Tweet: Decodable {
@@ -15,6 +7,7 @@ struct Tweet: Decodable {
     var extendedEntities: MediaResponse?
     var user: UserDetails?
     var isQuoteStatus: Bool?
+    var quotedStatus: QuotedStatus?
 }
 
 struct MediaResponse: Decodable {
@@ -42,4 +35,9 @@ struct UserDetails: Decodable {
     var name: String?
     var screenName: String?
     var profileImageUrlHttps: String?
+}
+
+struct QuotedStatus: Decodable {
+    var text: String
+    var extendedEntities: MediaResponse
 }

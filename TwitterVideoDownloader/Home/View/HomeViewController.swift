@@ -1,15 +1,6 @@
-//
-//  MainViewController.swift
-//  TwitterVideoDownloader
-//
-//  Created by Ahmad, Mohammed (UK - London) on 1/7/20.
-//  Copyright © 2020 Ahmad, Mohammed (UK - London). All rights reserved.
-//
-
 import UIKit
 
-final class MainTableViewController: UITableViewController {
-
+final class HomeViewController: UITableViewController {
     // MARK: - IBOutlets
 
     @IBOutlet weak var pasteButton: UIBarButtonItem!
@@ -25,21 +16,20 @@ final class MainTableViewController: UITableViewController {
     // MARK: - Properties
 
     private static let tweetDetailSegue = "tweetDetailSegue"
-    private let mediaProvider: MediaProvider
+    private let viewModel: HomeViewModeling
     private let pasteBoard = UIPasteboard.general
-    private var tweetID = ""
-    private var isTweetID = false
 
     // MARK: - Initializers
 
-    init(mediaProvider: MediaProvider = MediaProvider()) {
-        self.mediaProvider = mediaProvider
+    init(viewModel: HomeViewModeling = HomeViewModel()) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        self.viewModel = HomeViewModel()
+        super.init(coder: coder)
     }
 
     // MARK: - View Lifecycle Methods
@@ -52,8 +42,11 @@ final class MainTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Self.tweetDetailSegue {
-            guard let tweetDetailVC = segue.destination as? TweetDetailViewController else { return }
-            tweetDetailVC.tweetVM = mediaProvider.tweetVM
+            guard let tweetDetailVC = segue.destination as? TweetDetailViewController,
+                  let tweet = viewModel.tweet else {
+                      return
+                  }
+            tweetDetailVC.viewModel = DetailViewModel(tweet)
         }
     }
 
@@ -63,36 +56,37 @@ final class MainTableViewController: UITableViewController {
         if let pasteString = pasteBoard.string {
             enterUrlTextField.text = pasteString
         } else {
-            presentAlert(message: "Copy a Tweet link first", cancel: "Say less")
+            presentAlert()
         }
     }
 
     @IBAction private func didTapFindItButton(_ sender: UIButton) {
-        guard let enteredURL = self.enterUrlTextField.text,
-            !self.enterUrlTextField.text!.isEmpty else {
-                return presentAlert(message: "Please paste in a Tweet link",
-                                    cancel: "Say less")
-        }
-        tweetID = mediaProvider.extractMediaID(withURL: enteredURL)
+        guard let urlString = self.enterUrlTextField.text,
+              !self.enterUrlTextField.text!.isEmpty else {
+                  presentAlert()
+                  return
+              }
 
-        guard !tweetID.isEmpty else {
-            return presentAlert(message: "Please paste in a Tweet link",
-                                cancel: "Say less")
+        viewModel.findTweetDidTap(
+            with: urlString
+        ) { [weak self] success in
+            if success {
+                self?.performSegue(
+                    withIdentifier: Self.tweetDetailSegue,
+                    sender: nil
+                )
+            } else {
+                self?.presentAlert()
+            }
         }
-        isTweetID = true
-        fetchMediaFromSource()
     }
 
     // MARK: - Private Functions
-
-    private func fetchMediaFromSource() {
-        mediaProvider.fetchTweet(with: tweetID) {
-            self.performSegue(withIdentifier: Self.tweetDetailSegue, sender: nil)
-            self.isTweetID = false
-        }
-    }
     
-    private func presentAlert(message: String, cancel: String) {
+    private func presentAlert(
+        message: String = "Please paste in a Tweet link",
+        cancel: String = "Say less"
+    ) {
         let alertController = UIAlertController(title: nil,
                                                 message: message,
                                                 preferredStyle: .alert)

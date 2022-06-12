@@ -24,7 +24,9 @@ final class TweetMediaTableViewCell: UITableViewCell {
         }
     }
 
-    // MARK: - IBOutlets
+    // MARK: - Properties
+
+    static let identifier = "TweetMediaCell"
 
     private var indexPathRow = 0
     private var videoURL = ""
@@ -32,7 +34,7 @@ final class TweetMediaTableViewCell: UITableViewCell {
 
     private lazy var generator = UINotificationFeedbackGenerator()
 
-    // MARK: - IBOutlets
+    // MARK: - User Interactions
 
     @objc func didTapSaveButton() {
         guard let view = superview else { return }
